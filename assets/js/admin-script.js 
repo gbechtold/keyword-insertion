@@ -1,0 +1,94 @@
+/**
+ * Keyword Insertion for WordPress - Admin Scripts
+ */
+
+jQuery(document).ready(function($) {
+    'use strict';
+    
+    // Escape special characters for URL
+    function encodeURLParameter(str) {
+        return encodeURIComponent(str).replace(/%20/g, '+');
+    }
+    
+    // URL preview functionality
+    function updateURLPreview() {
+        var keyword = $('#keyins-preview-keyword').val();
+        var paramName = $('#keyins_param_name').val() || 'k';
+        var baseUrl = typeof keyinsAdmin !== 'undefined' && keyinsAdmin.siteUrl ? keyinsAdmin.siteUrl : window.location.origin + '/';
+        
+        // Ensure the base URL has a trailing slash if needed
+        if (!baseUrl.endsWith('/')) {
+            baseUrl += '/';
+        }
+        
+        // Create the full URL
+        var fullUrl = baseUrl + 'sample-page/?' + paramName + '=' + encodeURLParameter(keyword);
+        
+        // Update the preview
+        $('#keyins-preview-url').html('<code>' + escapeHTML(fullUrl) + '</code>');
+    }
+    
+    // Escape HTML for display
+    function escapeHTML(str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+    
+    // Initialize URL preview
+    if ($('#keyins-preview-keyword').length > 0) {
+        updateURLPreview();
+        
+        // Update preview when keyword changes
+        $('#keyins-preview-keyword').on('input', function() {
+            updateURLPreview();
+        });
+        
+        // Update preview when param name changes
+        $('#keyins_param_name').on('input', function() {
+            updateURLPreview();
+        });
+        
+        // Copy URL to clipboard
+        $('#keyins-copy-url').on('click', function() {
+            var urlText = $('#keyins-preview-url code').text();
+            
+            // Modern approach with Clipboard API if available
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(urlText).then(function() {
+                    $('#keyins-copy-message').text('URL copied!').fadeIn().delay(2000).fadeOut();
+                })
+                .catch(function() {
+                    // Fallback for older browsers
+                    legacyCopyToClipboard(urlText);
+                });
+            } else {
+                // Fallback for older browsers
+                legacyCopyToClipboard(urlText);
+            }
+        });
+        
+        // Legacy copy method
+        function legacyCopyToClipboard(text) {
+            var tempInput = $('<input>');
+            $('body').append(tempInput);
+            tempInput.val(text).select();
+            
+            try {
+                var successful = document.execCommand('copy');
+                if (successful) {
+                    $('#keyins-copy-message').text('URL copied!').fadeIn().delay(2000).fadeOut();
+                } else {
+                    $('#keyins-copy-message').text('Copy failed. Please try manually.').fadeIn().delay(2000).fadeOut();
+                }
+            } catch (err) {
+                $('#keyins-copy-message').text('Copy failed. Please try manually.').fadeIn().delay(2000).fadeOut();
+            }
+            
+            tempInput.remove();
+        }
+    }
+});

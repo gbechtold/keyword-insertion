@@ -1,0 +1,152 @@
+/**
+ * Keyword Insertion for WordPress - Admin Styles
+ */
+
+.keyins-admin-wrap {
+  max-width: 100%;
+}
+
+.keyins-admin-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.keyins-settings-container {
+  flex: 0 0 100%;
+  background: #fff;
+  border: 1px solid #ccd0d4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  padding: 15px 25px;
+  margin-bottom: 20px;
+}
+
+.keyins-documentation {
+  flex: 0 0 100%;
+}
+
+.keyins-usage-section {
+  background: #fff;
+  border: 1px solid #ccd0d4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+  padding: 15px 25px;
+}
+
+.keyins-usage-section h2 {
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.keyins-usage-section h3 {
+  margin-top: 1.5em;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #23282d;
+}
+
+.keyins-usage-example {
+  margin-bottom: 2em;
+}
+
+.keyins-usage-section pre {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 3px;
+  overflow: auto;
+  border: 1px solid #e2e4e7;
+  font-family: monospace;
+}
+
+.keyins-usage-section code {
+  background: #f5f5f5;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.keyins-usage-section ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+/* URL Preview Tool */
+.keyins-url-preview {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.keyins-preview-form {
+  margin-top: 15px;
+}
+
+.keyins-preview-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.keyins-preview-form input[type='text'] {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 15px;
+  padding: 8px 10px;
+}
+
+.keyins-preview-result {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #e2e4e7;
+  border-radius: 3px;
+}
+
+.keyins-preview-result h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.keyins-preview-url {
+  word-break: break-all;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #e2e4e7;
+  border-radius: 3px;
+  min-height: 20px;
+}
+
+.keyins-preview-url code {
+  display: block;
+  white-space: normal;
+  word-break: break-all;
+  background: none;
+  font-family: monospace;
+  font-size: 13px;
+  color: #444;
+}
+
+.keyins-copy-button {
+  display: flex;
+  align-items: center;
+}
+
+.keyins-copy-message {
+  margin-left: 10px;
+  color: #46b450;
+  display: none;
+  font-weight: 500;
+}
+
+#keyins-copy-url {
+  color: #0071a1;
+  border-color: #0071a1;
+}
+
+#keyins-copy-url:hover {
+  color: #016087;
+  border-color: #016087;
+  background: #f3f5f6;
+}
